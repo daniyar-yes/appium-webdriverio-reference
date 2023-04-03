@@ -1,0 +1,22 @@
+{
+  "name": "webdriverio-ts-appium-ref",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/mocha": "^10.0.1",
+    "mocha": "^10.2.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.2",
+    "webdriverio": "^8.6.9"
+  },
+  "dependencies": {
+    "appium": "^1.22.3"
+  }
+}
