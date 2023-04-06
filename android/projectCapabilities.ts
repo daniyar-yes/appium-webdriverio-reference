@@ -4,7 +4,7 @@ class ProjectCapabilities {
     private static webDriverPath: string = '/wd/hub';
     private static webDriverPort: number = 4723;
 
-    static androidBaseCapabilities(appPackage: string = "com.anonymous.rnTodo", appActivity: string = "com.anonymous.rnTodo.MainActivity", additionalCaps?: object): RemoteOptions {
+    static androidBaseCapabilities(appPackage: string = "ca.craver.railtown.staging", appActivity: string = "ca.craver.MainActivity", additionalCaps?: object): RemoteOptions {
         const desiredCapabilities = {
             platformName: "Android",
             deviceName: "Android Emulator",
