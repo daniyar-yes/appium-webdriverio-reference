@@ -1,6 +1,6 @@
 import { Browser, Element } from "webdriverio";
 // Wait up to 20 seconds
-const MAX_ELEMENT_WAIT_THRESHOLD_MS = 20000;
+const MAX_ELEMENT_WAIT_THRESHOLD_MS = 40000;
 async function findElement(driver: Browser, elementLocator: string, timeout: number = MAX_ELEMENT_WAIT_THRESHOLD_MS) {
 	const element: Element = await driver.$(elementLocator);
 	await element.waitForExist({
@@ -27,6 +27,9 @@ async function scrollDown(driver: Browser, scrollDuration = 300) {
     const startPoint = (height * startPercentage) / 100
     const endPoint = (height * endPercentage) / 100
 
+	let forPrint = driver.getPageSource();
+	console.log(forPrint)
+
     await driver.performActions([
         {
             type: 'pointer',
@@ -43,4 +46,14 @@ async function scrollDown(driver: Browser, scrollDuration = 300) {
         },
     ])
 }
-export { tapElement, setValueOfElement, scrollDown };
+
+async function print(driver: Browser,) {
+	let forPrint = driver.getPageSource();
+	setTimeout(() => console.log(forPrint), 5000)
+}
+
+async function clickPickup(driver: Browser) {
+	const pickupButton = await driver.$('~Pick up')
+}
+
+export { tapElement, setValueOfElement, scrollDown, print, clickPickup };

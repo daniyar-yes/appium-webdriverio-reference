@@ -1,18 +1,19 @@
-import { remote, RemoteOptions, Browser } from "webdriverio";
-import ProjectCapabilities from "./projectCapabilities";
-import Railtown from "./viewObjects/railtown";
-import { tapElement, setValueOfElement, scrollDown } from "./utils";
+import { remote, RemoteOptions, Browser} from "webdriverio";
+import ProjectCapabilities from "../projectCapabilities";
+import Railtown from "./railtown";
+import { tapElement, setValueOfElement, scrollDown, print } from "../utils";
 
 describe('Railtown App Test', function () {
 	let driver: Browser
-	this.timeout(200000);
+	this.timeout(400000);
 	before(async function () {
 		const remoteOptions: RemoteOptions = ProjectCapabilities.androidBaseCapabilities();
 		driver = await remote(remoteOptions);
 	});
 	it('Login and add items to cart', async function () {
-        // Enter email
+		
 		await tapElement(driver, `android=${Railtown.locators.allowPermission}`)
+		
 		await tapElement(driver, `android=${Railtown.locators.headerMenuButton}`)
 		await tapElement(driver, `android=${Railtown.locators.signInButton}`)
 		// Enter Email
@@ -39,8 +40,7 @@ describe('Railtown App Test', function () {
 		await tapElement(driver, `android=${Railtown.locators.pmTimeOption}`)
 		await tapElement(driver, `android=${Railtown.locators.okCalendarButton}`)
 		// Scroll to Sandwiches
-		await scrollDown(driver, 300)
-		await scrollDown(driver, 300)
+		await setTimeout(() => scrollDown(driver, 300), 500)
 		await scrollDown(driver, 300)
 		await scrollDown(driver, 300)
 		// Select Sandwiches
@@ -48,27 +48,21 @@ describe('Railtown App Test', function () {
 		// Select Chicke Sub
 		await tapElement(driver, `android=${Railtown.locators.chickenClubItemButton}`)
 		// Scroll Down to Add to cart
-		await scrollDown(driver, 300)
-		await scrollDown(driver, 300)
+		await setTimeout(() => scrollDown(driver, 300), 4000)
+		
 		// Add to cart
-		await setTimeout(() => tapElement(driver, `android=${Railtown.locators.addToCartButton}`), 2000)
-		// Sign Out
-		// await tapElement(driver, `android=${Railtown.locators.appDrawerMenuIcon}`)
-		// await tapElement(driver, `android=${Railtown.locators.signOutButton}`)
-
-
-		// await setTimeout(() => tapElement(driver, `android=${Railtown.locators.selectDateAndTime}`), 1000)
-		// await setTimeout(() => tapElement(driver, `android=${Railtown.locators.selectDateDayFromCalendar}`), 1000)
-		// await setTimeout(() => tapElement(driver, `android=${Railtown.locators.okCalendarButton}`), 1000)
-		// // Select Time
-		// await setTimeout(() => tapElement(driver, `android=${Railtown.locators.twoHourTimeOption}`), 1000)
-		// await setTimeout(() => tapElement(driver, `android=${Railtown.locators.thirtyMinuteTimeOption}`), 1000)
-		// await setTimeout(() => tapElement(driver, `android=${Railtown.locators.pmTimeOption}`), 1000)
-		// await setTimeout(() => tapElement(driver, `android=${Railtown.locators.okCalendarButton}`), 1000)
-
-
-	});
+		await tapElement(driver, `android=${Railtown.locators.addToCartButton}`)
+		});
 	after(async function () {
 		await setTimeout(() => driver.deleteSession(), 5000)
 	});
 });
+
+
+// await tapElement(driver, `android=${Railtown.locators.letsGetStartedButton}`) // for Samsung
+		// await tapElement(driver, `android=${Railtown.locators.pickUpOption}`)
+	
+		//await tapElement(driver, `android=${Railtown.locators.allowPermissionCaps}`) for Huawei
+		// await print(driver)
+        // Enter email
+		// await tapElement(driver, `android=${Railtown.locators.allowPermission}`)
